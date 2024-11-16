@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Styling Table */
+table {
+  @apply w-full table-auto border-collapse;
+}
+
+thead {
+@apply bg-[#F9FAFB]  font-bold;
+}
+
+thead tr {
+  @apply text-left;
+}
+
+th {
+  @apply p-3;
+}
+
+tbody {
+  @apply divide-y divide-[#EDF2F7];
+}
+
+tbody tr {
+  @apply even:bg-[#F9FAFB];
+}
+
+td {
+  @apply p-2;
+}
+/* End of Styling Table */
