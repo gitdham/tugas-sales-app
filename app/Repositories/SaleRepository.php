@@ -9,11 +9,24 @@ class SaleRepository {
     return Sale::findOrFail($saleId);
   }
 
-  public function getPaginate(int $perPage = 10, string $orderBy = 'date', string $search = '') {
+  /**
+   * Get sales data in pagination and custom order.
+   *
+   * @param int $perPage per page data to show. default is 10.
+   * @param array{
+   *  column: string,
+   *  direction: string
+   * }$orderBy An array scope of order colum.
+   */
+  public function getPaginate(
+    int $perPage = 10,
+    array $orderBy = ['column' => 'date', 'direction' => 'desc']
+  ) {
     return Sale::query()
       ->select('id', 'date', 'total_amount')
       ->with(['products'])
-      ->orderBy($orderBy, 'desc')
+      ->withCount('products')
+      ->orderBy($orderBy['column'], $orderBy['direction'])
       ->paginate($perPage);
   }
 
